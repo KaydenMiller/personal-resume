@@ -1,0 +1,27 @@
+﻿@import "../wwwroot/css/mixins";
+
+.background-splash {
+  @include blade(#000000);
+  position: relative;
+  overflow: hidden;
+  
+  &-photo {
+    position: absolute;
+    bottom: 0;
+    height: 75%;
+    
+    @media screen and (max-width: 575.98px) {
+      right: -125px;
+    }
+
+    right: 10px;
+  }
+  
+  .content {
+    position: absolute;
+    color: whitesmoke;
+    
+    top: 5%;
+    left: 10%;
+  }
+}

@@ -1,0 +1,9 @@
+﻿@import "../wwwroot/css/mixins";
+
+.blade {
+  @include blade(#ffffff);
+  
+  .content {
+    padding: 10px;
+  }
+}
