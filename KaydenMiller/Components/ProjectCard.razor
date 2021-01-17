@@ -1,0 +1,26 @@
+﻿<Card>
+    <CardImage Source="@ImageUri" Alt="@ImageAlt"></CardImage>
+    <CardBody>
+        <CardTitle Size="5">@ProjectTitle</CardTitle>
+        <CardText>@ProjectDescription</CardText>
+        <Button Color="Color.Primary">@ButtonText</Button>
+    </CardBody>
+</Card>
+
+@code {
+    [Parameter]
+    public string ImageUri { get; set; }
+
+    [Parameter]
+    public string ImageAlt { get; set; }
+
+    [Parameter]
+    public string ProjectTitle { get; set; }
+
+    [Parameter]
+    public string ProjectDescription { get; set; }
+
+    [Parameter]
+    public string ButtonText { get; set; } = "Learn More";
+
+}

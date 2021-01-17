@@ -1,13 +1,57 @@
-﻿<div class="blade">
+﻿@using KaydenMiller.Models
+
+<div class="blade">
     <div class="content">
         <h3>Personal Projects</h3>
     
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <Carousel @bind-SelectedSlide="@SelectedSlide">
+            @foreach (var project in _projects)
+            {
+                <CarouselSlide Name="@(project.ProjectCarouselId)">
+                    <ProjectCard ImageUri="@(project.ImageUri)"
+                                 ImageAlt="@(project.ImageAlt)"
+                                 ProjectTitle="@(project.Title)"
+                                 ProjectDescription="@(project.Description)"
+                                 ButtonText="@(project.ButtonText)"></ProjectCard>
+                </CarouselSlide>
+            }
+        </Carousel> 
     </div>
 </div>
 
 @code {
-    
+    [Parameter]
+    public string SelectedSlide { get; set; } = "Project1";
+
+    private List<ProjectDisplayModel> _projects = new()
+    {
+        new()
+        {
+            ProjectCarouselId = "Project1",
+            Title = "RGB LED Cube Controller",
+            Description = "This simple circuit board was revision 2 of a design I am working on for a RGB LED Cube.",
+            ButtonText = "Learn More",
+            ImageUri = "images/RGB_Cube_V2.png",
+            ImageAlt = "RGB LED Cube Controller Circuit"
+        },
+        new()
+        {
+            ProjectCarouselId = "Project2",
+            Title = "RGB LED Cube Controller Project 2",
+            Description = "This simple circuit board was revision 2 of a design I am working on for a RGB LED Cube.",
+            ButtonText = "Learn More",
+            ImageUri = "images/RGB_Cube_V2.png",
+            ImageAlt = "RGB LED Cube Controller Circuit"
+        },
+        new()
+        {
+            ProjectCarouselId = "Project3",
+            Title = "RGB LED Cube Controller Project 3",
+            Description = "This simple circuit board was revision 2 of a design I am working on for a RGB LED Cube.",
+            ButtonText = "Experience It",
+            ImageUri = "images/RGB_Cube_V2.png",
+            ImageAlt = "RGB LED Cube Controller Circuit"
+        }
+    };
+
 }

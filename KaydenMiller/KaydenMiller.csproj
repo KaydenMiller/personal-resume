@@ -24,6 +24,9 @@
       <None Update="Components\Projects.razor.scss">
         <DependentUpon>Projects.razor</DependentUpon>
       </None>
+      <None Update="Components\Contact.razor.scss">
+        <DependentUpon>Contact.razor</DependentUpon>
+      </None>
     </ItemGroup>
 
     <ItemGroup>

@@ -1,0 +1,15 @@
+﻿@import "../wwwroot/css/mixins";
+
+.blade {
+  @include blade(#93ffe0);
+
+  .content {
+    padding: 10px;
+    
+    .contact {      
+      &-header {
+        font-weight: bold;
+      }
+    }
+  }
+}
