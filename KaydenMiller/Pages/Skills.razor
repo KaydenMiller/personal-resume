@@ -1,0 +1,53 @@
+﻿@page "/Skills"
+@using KaydenMiller.Models
+@using DataAccessLayer
+@inject ISkillData _skillData
+
+<h3>Skills</h3>
+
+@if (_skills is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <Table Striped="true">
+        <TableHeader ThemeContrast="ThemeContrast.Dark">
+            <TableRow>
+                <TableHeaderCell>Skill Name</TableHeaderCell>
+                <TableHeaderCell>Personal Rating</TableHeaderCell>
+                <TableHeaderCell>Related Experiance</TableHeaderCell>
+            </TableRow>
+        </TableHeader>
+        <TableBody>
+            @foreach (var skill in _skills)
+            {
+                <TableRow >
+                    <TableRowHeader>
+                        <Tooltip Text="@(skill.Tooltip)">@(skill.Name)</Tooltip>
+                    </TableRowHeader>
+                    <TableRowCell>@(skill.PersonalRating)</TableRowCell>
+                    <TableRowCell>@(skill.RelatedExperienceLinks)</TableRowCell>
+                </TableRow>
+            }
+        </TableBody>
+    </Table>
+}
+
+@code {
+    private List<SkillDisplayModel> _skills;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _skills = (await _skillData.GetSkills()).Select(s =>
+        {
+            return new SkillDisplayModel()
+            {
+                Name = s.Name,
+                Tooltip = s.Tooltip,
+                PersonalRating = s.PersonalStarRating
+            };
+        }).ToList();
+    }
+
+}

@@ -10,3 +10,4 @@ riderModule.iml
 # Remove all preprocessed css files from repo
 *.razor.css
 *.razor.css.map
+/KaydenMiller/.env

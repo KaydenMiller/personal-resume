@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Icons.Material;
 using Blazorise.Material;
+using DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +33,9 @@ namespace KaydenMiller
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-
+            services.AddTransient<IDataAccess, DataAccess>();
+            services.AddTransient<ISkillData, SkillData>();
+            
             services
                 .AddBlazorise(options =>
                 {
