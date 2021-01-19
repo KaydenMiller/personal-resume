@@ -27,6 +27,7 @@ namespace KaydenMiller
             services.AddSingleton<WeatherForecastService>();
             services.AddTransient<IDataAccess, DataAccess>();
             services.AddTransient<ISkillData, SkillData>();
+            services.AddTransient<ISkillCategoryData, SkillData>();
 
             services.AddSyncfusionBlazor();
         }

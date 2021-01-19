@@ -1,7 +1,9 @@
 ﻿@page "/Skills"
 @using KaydenMiller.Models
 @using DataAccessLayer
+@using DataAccessLayer.Models
 @inject ISkillData _skillData
+@inject ISkillCategoryData _skillCategoryData
 
 @if (_skills is null)
 {
@@ -11,18 +13,32 @@
 }
 else
 {
-    <SfGrid DataSource="@_skills" AllowSelection="false" AllowSorting="true" AllowFiltering="true" AllowPaging="true">
+    <SfGrid DataSource="@_skills"
+            AllowSelection="false"
+            AllowSorting="true"
+            AllowFiltering="true"
+            AllowPaging="true"
+            AllowGrouping="true">
+        <GridGroupSettings Columns="@_groupColumns" ShowDropArea="true"></GridGroupSettings>
         <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu"></GridFilterSettings>
-        <GridPageSettings PageSize="5"></GridPageSettings> 
-        <GridColumns>
-            <GridColumn Field="@nameof(SkillDisplayModel.Name)" HeaderText="Name"></GridColumn>
-            <GridColumn Field="@nameof(SkillDisplayModel.PersonalRating)" HeaderText="Personal Confidence">
+        <GridPageSettings PageSize="10"></GridPageSettings>
+        <GridColumns> 
+            <GridColumn Field="@nameof(SkillDataGridDisplayModel.CategoryName)" HeaderText="Category"></GridColumn>
+            <GridColumn Field="Skill.Name" HeaderText="Skill Name">
                 <Template>
                     @{
-                        var skill = context as SkillDisplayModel;
-
-                        <SfTooltip Target="#star-rating" Content="@(skill?.PersonalRating + " stars")">
-                            <StarRating Id="star-rating" StarValue="@(skill?.PersonalRating ?? 1)"/>
+                        var skill = context as SkillDataGridDisplayModel;
+                        <span>@skill?.Skill.Name</span>
+                    }
+                </Template>
+            </GridColumn>
+            <GridColumn Field="Skill.PersonalRating" HeaderText="Personal Confidence">
+                <Template>
+                    @{
+                        var skill = context as SkillDataGridDisplayModel;
+            
+                        <SfTooltip Target="#star-rating" Content="@(skill?.Skill.PersonalRating + " stars")">
+                            <StarRating Id="star-rating" StarValue="@(skill?.Skill.PersonalRating ?? 1)"/>
                         </SfTooltip>
                     }
                 </Template>
@@ -32,19 +48,27 @@ else
 }
 
 @code {
-    private List<SkillDisplayModel> _skills;
+    private List<SkillDataGridDisplayModel> _skills;
+    private string[] _groupColumns = { "CategoryName" };
 
     protected override async Task OnInitializedAsync()
     {
-        _skills = (await _skillData.GetSkills()).Select(s =>
-        {
-            return new SkillDisplayModel()
-            {
-                Name = s.Name,
-                Tooltip = s.Tooltip,
-                PersonalRating = s.PersonalStarRating
-            };
-        }).ToList();
+        var skillCategories = await _skillCategoryData.GetSkillCategories();
+        var skills = await _skillData.GetSkills();
+        _skills = skillCategories.Join(skills, 
+                scm => scm.Id,
+                sc => sc.SkillCategoryId, 
+                (scm, sm) => new SkillDataGridDisplayModel
+                {
+                    CategoryName = scm.Name,
+                    Skill = new() {
+                        Name = sm.Name,
+                        PersonalRating = sm.PersonalStarRating,
+                        Tooltip = sm.Tooltip,
+                        RelatedExperienceLinks = Array.Empty<string>()
+                    }
+                })
+            .ToList();
     }
 
 }
