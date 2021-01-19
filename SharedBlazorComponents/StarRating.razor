@@ -1,0 +1,33 @@
+﻿<span id="@Id">
+    @for (var i = 0; i < StarValue; i++)
+    {
+        @if (i == (int) Math.Floor(StarValue))
+        {
+            // If last star
+            <Star StarWidthPercent="@StarValueRemainder"></Star>
+        }
+        else
+        {
+            <Star></Star>
+        }
+    }
+</span>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public int StarCount { get; set; } = 5;
+
+    [Parameter]
+    public double StarValue { get; set; } = 5;
+
+    private int StarValueRemainder => GetRemainder();
+
+    private int GetRemainder()
+    {
+        var remainder = StarValue - Math.Floor(StarValue);
+        return remainder != 0 ? (int)(remainder * 100) : 0;
+    }
+}

@@ -3,35 +3,32 @@
 @using DataAccessLayer
 @inject ISkillData _skillData
 
-<h3>Skills</h3>
-
 @if (_skills is null)
 {
-    <p><em>Loading...</em></p>
+    <p>
+        <em>Loading...</em>
+    </p>
 }
 else
 {
-    <Table Striped="true">
-        <TableHeader ThemeContrast="ThemeContrast.Dark">
-            <TableRow>
-                <TableHeaderCell>Skill Name</TableHeaderCell>
-                <TableHeaderCell>Personal Rating</TableHeaderCell>
-                <TableHeaderCell>Related Experiance</TableHeaderCell>
-            </TableRow>
-        </TableHeader>
-        <TableBody>
-            @foreach (var skill in _skills)
-            {
-                <TableRow >
-                    <TableRowHeader>
-                        <Tooltip Text="@(skill.Tooltip)">@(skill.Name)</Tooltip>
-                    </TableRowHeader>
-                    <TableRowCell>@(skill.PersonalRating)</TableRowCell>
-                    <TableRowCell>@(skill.RelatedExperienceLinks)</TableRowCell>
-                </TableRow>
-            }
-        </TableBody>
-    </Table>
+    <SfGrid DataSource="@_skills" AllowSelection="false" AllowSorting="true" AllowFiltering="true" AllowPaging="true">
+        <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu"></GridFilterSettings>
+        <GridPageSettings PageSize="5"></GridPageSettings> 
+        <GridColumns>
+            <GridColumn Field="@nameof(SkillDisplayModel.Name)" HeaderText="Name"></GridColumn>
+            <GridColumn Field="@nameof(SkillDisplayModel.PersonalRating)" HeaderText="Personal Confidence">
+                <Template>
+                    @{
+                        var skill = context as SkillDisplayModel;
+
+                        <SfTooltip Target="#star-rating" Content="@(skill?.PersonalRating + " stars")">
+                            <StarRating Id="star-rating" StarValue="@(skill?.PersonalRating ?? 1)"/>
+                        </SfTooltip>
+                    }
+                </Template>
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
 }
 
 @code {

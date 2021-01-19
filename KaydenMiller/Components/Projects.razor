@@ -3,19 +3,14 @@
 <div class="blade">
     <div class="content">
         <h3>Personal Projects</h3>
-    
-        <Carousel @bind-SelectedSlide="@SelectedSlide">
-            @foreach (var project in _projects)
-            {
-                <CarouselSlide Name="@(project.ProjectCarouselId)">
-                    <ProjectCard ImageUri="@(project.ImageUri)"
-                                 ImageAlt="@(project.ImageAlt)"
-                                 ProjectTitle="@(project.Title)"
-                                 ProjectDescription="@(project.Description)"
-                                 ButtonText="@(project.ButtonText)"></ProjectCard>
-                </CarouselSlide>
-            }
-        </Carousel> 
+        @foreach (var project in _projects)
+        {
+            <ProjectCard ImageUri="@(project.ImageUri)"
+                             ImageAlt="@(project.ImageAlt)"
+                             ProjectTitle="@(project.Title)"
+                             ProjectDescription="@(project.Description)"
+                             ButtonText="@(project.ButtonText)"></ProjectCard>
+        }
     </div>
 </div>
 

@@ -1,0 +1,19 @@
+﻿.star {
+  height: 20px;
+  
+  &-empty {
+    clip-path: inset(0 20px 0 0);
+  }
+  
+  &-quarter {
+    clip-path: inset(0 15px 0 0);
+  }
+  
+  &-half {
+    clip-path: inset(0 10px 0 0);
+  }
+
+  &-three-quarter {
+    clip-path: inset(0 5px 0 0);
+  }
+}

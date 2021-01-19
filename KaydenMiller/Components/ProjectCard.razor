@@ -1,11 +1,15 @@
-﻿<Card>
-    <CardImage Source="@ImageUri" Alt="@ImageAlt"></CardImage>
-    <CardBody>
-        <CardTitle Size="5">@ProjectTitle</CardTitle>
-        <CardText>@ProjectDescription</CardText>
-        <Button Color="Color.Primary">@ButtonText</Button>
-    </CardBody>
-</Card>
+﻿<SfCard>
+    <CardImage Image="@ImageUri"></CardImage>
+    <CardHeader Title="@ProjectTitle"/>
+    <CardContent>
+        @ProjectDescription
+    </CardContent>
+    <CardFooter>
+        <CardFooterContent>
+            <SfButton>@ButtonText</SfButton>
+        </CardFooterContent>
+    </CardFooter>
+</SfCard>
 
 @code {
     [Parameter]

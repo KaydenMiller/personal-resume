@@ -1,19 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Blazorise;
-using Blazorise.Icons.Material;
-using Blazorise.Material;
 using DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using KaydenMiller.Data;
+using Syncfusion.Blazor;
 
 namespace KaydenMiller
 {
@@ -35,14 +27,8 @@ namespace KaydenMiller
             services.AddSingleton<WeatherForecastService>();
             services.AddTransient<IDataAccess, DataAccess>();
             services.AddTransient<ISkillData, SkillData>();
-            
-            services
-                .AddBlazorise(options =>
-                {
-                    options.ChangeTextOnKeyPress = true;
-                })
-                .AddMaterialProviders()
-                .AddMaterialIcons();
+
+            services.AddSyncfusionBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,10 +49,6 @@ namespace KaydenMiller
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.ApplicationServices
-                .UseMaterialProviders()
-                .UseMaterialIcons();
 
             app.UseEndpoints(endpoints =>
             {
