@@ -7,49 +7,37 @@
 
 @if (_skills is null)
 {
-    <p>
-        <em>Loading...</em>
-    </p>
+    <div>Loading...</div>
 }
 else
 {
-    <SfGrid DataSource="@_skills"
-            AllowSelection="false"
-            AllowSorting="true"
-            AllowFiltering="true"
-            AllowPaging="true"
-            AllowGrouping="true">
-        <GridGroupSettings Columns="@_groupColumns" ShowDropArea="true"></GridGroupSettings>
-        <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu"></GridFilterSettings>
-        <GridPageSettings PageSize="10"></GridPageSettings>
-        <GridColumns> 
-            <GridColumn Field="@nameof(SkillDataGridDisplayModel.CategoryName)" HeaderText="Category"></GridColumn>
-            <GridColumn Field="Skill.Name" HeaderText="Skill Name">
-                <Template>
-                    @{
-                        var skill = context as SkillDataGridDisplayModel;
-                        <span>@skill?.Skill.Name</span>
-                    }
-                </Template>
-            </GridColumn>
-            <GridColumn Field="Skill.PersonalRating" HeaderText="Personal Confidence">
-                <Template>
-                    @{
-                        var skill = context as SkillDataGridDisplayModel;
-            
-                        <SfTooltip Target="#star-rating" Content="@(skill?.Skill.PersonalRating + " stars")">
-                            <StarRating Id="star-rating" StarValue="@(skill?.Skill.PersonalRating ?? 1)"/>
-                        </SfTooltip>
-                    }
-                </Template>
-            </GridColumn>
-        </GridColumns>
-    </SfGrid>
+    <div class="content-container">
+        <MatTable Items="@_skills" Class="mat-elevation-z5" ShowPaging="false" UseSortHeaderRow="true">
+            <MatTableHeader>
+                <MatSortHeaderRow>
+                    <MatSortHeader SortId="category">Category</MatSortHeader>
+                    <MatSortHeader SortId="name">Name</MatSortHeader>
+                    <MatSortHeader SortId="rating">Rating</MatSortHeader>
+                </MatSortHeaderRow>
+            </MatTableHeader>
+            <MatTableRow>
+                <td>@context.CategoryName</td>
+                <td>@context.Skill.Name</td>
+                <td>
+                    <div class="star-rating-container">
+                        <StarRating Id="star-rating" StarValue="@(context?.Skill.PersonalRating ?? 1)"/>
+                    </div>
+                </td>
+            </MatTableRow>
+        </MatTable>
+    </div>
 }
 
 @code {
     private List<SkillDataGridDisplayModel> _skills;
     private string[] _groupColumns = { "CategoryName" };
+
+    private bool VisibleProperty { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
     {

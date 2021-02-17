@@ -6,13 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="Delegate.SassBuilder" Version="1.4.0" />
-      <PackageReference Include="Syncfusion.Blazor.Buttons" Version="18.4.0.30" />
-      <PackageReference Include="Syncfusion.Blazor.Cards" Version="18.4.0.30" />
-      <PackageReference Include="Syncfusion.Blazor.Core" Version="18.4.0.30" />
-      <PackageReference Include="Syncfusion.Blazor.Grid" Version="18.4.0.30" />
-      <PackageReference Include="Syncfusion.Blazor.Popups" Version="18.4.0.30" />
-      <PackageReference Include="Syncfusion.Blazor.Spinner" Version="18.4.0.30" />
-      <PackageReference Include="Syncfusion.Blazor.Themes" Version="18.4.0.30" />
+      <PackageReference Include="MatBlazor" Version="2.8.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -31,6 +25,9 @@
       </None>
       <None Update="Components\Contact.razor.scss">
         <DependentUpon>Contact.razor</DependentUpon>
+      </None>
+      <None Update="Pages\Skills.razor.scss">
+        <DependentUpon>Skills.razor</DependentUpon>
       </None>
     </ItemGroup>
 

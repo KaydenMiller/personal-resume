@@ -1,0 +1,15 @@
+﻿<h3>CarouselArrowButtons</h3>
+
+@code {
+    [CascadingParameter]
+    public CarouselFooter ParentComponent { get; set; }
+    
+    protected override Task OnInitializedAsync()
+    {
+        if (ParentComponent is null)
+            throw new ArgumentNullException(nameof(ParentComponent), "CarouselArrowButton must exist within a CarouselFooter");
+
+        return base.OnInitializedAsync();
+    }
+
+}

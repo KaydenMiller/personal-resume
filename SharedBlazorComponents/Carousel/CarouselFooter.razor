@@ -1,0 +1,18 @@
+﻿<div>
+    <CascadingValue Value="@this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    private CarouselArrowButton[] _arrowButtons = new CarouselArrowButton[2];
+
+    internal void AddArrowButton(CarouselArrowButton button)
+    {
+        
+    }
+}

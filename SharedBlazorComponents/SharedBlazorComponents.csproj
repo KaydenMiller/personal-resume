@@ -14,7 +14,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Star.razor.scss">
+      <None Update="Carousel\Carousel.razor.scss">
+        <DependentUpon>Carousel.razor</DependentUpon>
+      </None>
+      <None Update="StarRating\Star.razor.scss">
         <DependentUpon>Star.razor</DependentUpon>
       </None>
     </ItemGroup>

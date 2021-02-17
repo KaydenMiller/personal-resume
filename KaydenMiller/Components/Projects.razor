@@ -1,16 +1,20 @@
 ﻿@using KaydenMiller.Models
+@using System.Timers
 
 <div class="blade">
     <div class="content">
         <h3>Personal Projects</h3>
-        @foreach (var project in _projects)
-        {
-            <ProjectCard ImageUri="@(project.ImageUri)"
-                             ImageAlt="@(project.ImageAlt)"
-                             ProjectTitle="@(project.Title)"
-                             ProjectDescription="@(project.Description)"
-                             ButtonText="@(project.ButtonText)"></ProjectCard>
-        }
+        <Carousel Timer="@_timer">
+            <CarouselItemContainer>
+                <CarouselContentItem>A</CarouselContentItem>
+                <CarouselContentItem>B</CarouselContentItem>
+                <CarouselContentItem>C</CarouselContentItem>
+            </CarouselItemContainer>
+            @* <CarouselFooter> *@
+            @*     <CarouselArrowButton></CarouselArrowButton> *@
+            @*     <CarouselArrowButton></CarouselArrowButton> *@
+            @* </CarouselFooter> *@
+        </Carousel>
     </div>
 </div>
 
@@ -18,6 +22,8 @@
     [Parameter]
     public string SelectedSlide { get; set; } = "Project1";
 
+    private Timer _timer = new Timer(2500);
+    
     private List<ProjectDisplayModel> _projects = new()
     {
         new()

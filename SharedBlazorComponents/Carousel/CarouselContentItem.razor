@@ -1,0 +1,23 @@
+﻿@if (Parent.ActiveContent.GetHashCode() == this.GetHashCode())
+{
+    <div class="carousel-item">
+        @ChildContent
+    </div>
+}
+
+@code {
+    [CascadingParameter]
+    public CarouselItemContainer Parent { get; set; }
+    
+    [Parameter] 
+    public RenderFragment ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Parent is null)
+            throw new ArgumentNullException(nameof(Parent), "CarouselContentItem must exist within a CarouselItemContainer");
+        base.OnInitializedAsync();
+        Console.WriteLine("Initial Item Code: {0}", this.GetHashCode());
+        Parent.AddCarouselItem(this);
+    }
+}

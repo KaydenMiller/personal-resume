@@ -1,0 +1,62 @@
+﻿<div class="carousel-item-container">
+    <CascadingValue Value="@this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    [CascadingParameter]
+    public Carousel Parent { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    int ActiveContentIndex { get; set; }
+    public CarouselContentItem ActiveContent { get; set; }
+
+    List<CarouselContentItem> _contentItems = new();
+
+    protected override void OnInitialized()
+    {
+        if (Parent is null)
+            throw new ArgumentNullException(nameof(Parent), "CarouselItemContainer must exist within a Carousel");
+        base.OnInitialized();
+        Parent.AddItemContainer(this);
+    }
+
+    internal void AddCarouselItem(CarouselContentItem contentItem)
+    {
+        _contentItems.Add(contentItem);
+        if (_contentItems.Count == 1)
+             ActiveContent = contentItem;
+        StateHasChanged();
+    }
+
+    internal void ActivateNextItem()
+    {
+        if (ActiveContentIndex >= _contentItems.Count)
+            ActiveContentIndex = 0;
+        Console.WriteLine("index: {0}", ActiveContentIndex);
+        ActiveContent = _contentItems[ActiveContentIndex++];
+        Console.WriteLine("Active Content Hash: {0}", ActiveContent?.GetHashCode());
+        StateHasChanged();
+    }
+
+    internal void ActivatePreviousItem()
+    {
+        ActiveContent = _contentItems[++ActiveContentIndex];
+        StateHasChanged();
+    }
+
+    internal void ActivateItem(CarouselContentItem contentItem)
+    {
+        // ActiveContent = _contentItems.Find(contentItem);
+
+        if (ActiveContent is null)
+        {
+            throw new ArgumentException("content does not exist in carousel", nameof(contentItem));
+        }
+        
+        StateHasChanged();
+    }
+}

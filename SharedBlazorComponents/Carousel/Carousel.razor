@@ -1,0 +1,40 @@
+﻿@using System.Timers
+<div class="carousel">
+    <CascadingValue Value="@this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public Timer Timer { get; set; }
+    
+    
+    private CarouselItemContainer _itemContainer;
+    
+    protected override void OnParametersSet()
+    {
+        if (Timer is not null)
+        {
+            Console.WriteLine("Timer not null");
+            Timer.Start();
+            Timer.Elapsed += TimerOnElapsed;
+        }
+        
+        base.OnParametersSet();
+    }
+
+    private void TimerOnElapsed(object sender, ElapsedEventArgs e)
+    {
+        _itemContainer?.ActivateNextItem();
+    }
+
+    internal void AddItemContainer(CarouselItemContainer itemContainer)
+    {
+        _itemContainer = itemContainer;
+        StateHasChanged();
+    }
+}
