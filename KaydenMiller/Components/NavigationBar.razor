@@ -1,0 +1,41 @@
+﻿@inject NavigationManager _navigateionManager
+
+<MatAppBarContainer>
+    <MatAppBar Fixed="true">
+        <MatAppBarRow>
+            <MatAppBarSection>
+                <MatNavItem href="/">
+                    <MatAppBarTitle>Kayden Miller</MatAppBarTitle>
+                </MatNavItem>
+            </MatAppBarSection>
+            <MatAppBarSection Align="MatAppBarSectionAlign.End">
+                <MatButtonLink href="/about" Icon="info" Unelevated="true">About Me</MatButtonLink>
+                <MatButtonLink href="/skills" Icon="analytics" Unelevated="true">Skills</MatButtonLink>
+                <MatButtonLink href="/contact-me" Icon="contact_mail" Unelevated="true">Contact Me</MatButtonLink>
+            </MatAppBarSection>
+        </MatAppBarRow>
+    </MatAppBar>
+    <MatAppBarContent>
+        @ChildContent
+    </MatAppBarContent>
+</MatAppBarContainer>
+
+@code {
+    [Parameter] 
+    public RenderFragment ChildContent { get; set; }
+
+    private void NavigateToSkills()
+    {
+        _navigateionManager.NavigateTo("/skills");
+    }
+
+    private void NavigateToAbout()
+    {
+        _navigateionManager.NavigateTo("/about");
+    } 
+    
+    private void NavigateToContact()
+    {
+        _navigateionManager.NavigateTo("/contact-me");
+    }
+}
