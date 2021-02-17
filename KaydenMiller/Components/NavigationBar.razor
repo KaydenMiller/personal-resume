@@ -9,20 +9,9 @@
                 </MatNavItem>
             </MatAppBarSection>
             <MatAppBarSection Align="MatAppBarSectionAlign.End">
-                <MatNavItem href="/about">
-                    <MatIconButton Icon="info"></MatIconButton>
-                    <span><MatH6>About Me</MatH6></span>
-                </MatNavItem>
-
-                <MatNavItem href="/skills">
-                    <MatIconButton Icon="analytics"></MatIconButton>
-                    <span><MatH6>Skills</MatH6></span>
-                </MatNavItem>
-
-                <MatNavItem href="/contact-me">
-                    <MatIconButton Icon="contact_mail"></MatIconButton>
-                    <span><MatH6>Contact Me</MatH6></span>
-                </MatNavItem>
+                <MatButtonLink href="/about" Icon="info" Unelevated="true">About Me</MatButtonLink>
+                <MatButtonLink href="/skills" Icon="analytics" Unelevated="true">Skills</MatButtonLink>
+                <MatButtonLink href="/contact-me" Icon="contact_mail" Unelevated="true">Contact Me</MatButtonLink>
             </MatAppBarSection>
         </MatAppBarRow>
     </MatAppBar>
