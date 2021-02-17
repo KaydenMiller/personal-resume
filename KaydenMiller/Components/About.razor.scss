@@ -1,9 +1,9 @@
 ﻿@import "../wwwroot/css/mixins";
 
 .background-about {
-  @include blade(darkred);
+  @include blade(white);
   
   .about-content {
-    padding: 10px;
+    padding: 25px;
   }
 }

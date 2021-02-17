@@ -1,19 +1,70 @@
 ﻿@using KaydenMiller.Pages
 @page "/about"
 
+
+<style>
+    /* not sure why this isn't working in the scss file */
+    .mat-card {
+      min-height: 420px;
+    }
+    
+    .mat-card-content {
+      padding: 1rem;
+    }
+    
+    .mat-card-clean-margin {
+      margin: 0px;
+    }
+</style>
 <div class="background-about">
     <div class="about-content">
-        <h3>About</h3>
-        
-        <h4>Skills</h4>
-        <div>
-            @* <Skills></Skills> *@
-        </div>    
-        
-        <h4>Who Am I?</h4>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <MatH1>About Me</MatH1>
+
+        <div class="mat-layout-grid">
+            <div class="mat-layout-grid-inner">
+                <div class="mat-layout-grid-cell">
+                    <MatCard Class="mat-card">
+                        <MatCardContent>
+                            <MatCardMedia Wide="true" ImageUrl="https://media-exp1.licdn.com/dms/image/C5603AQHtA-M2acABkw/profile-displayphoto-shrink_800_800/0/1527910789640?e=1619049600&v=beta&t=A19e6fQw8inK8jzcIie2wq42gJKvwjuFv5Q-pFm8wlo"></MatCardMedia>
+                            <div class="mat-card-content">
+                                <MatH6 Class="mat-card-clean-margin">Who Am I</MatH6>
+                            </div>
+                            <MatBody2 Class="mat-card-content mat-card-clean-margin">
+                                Test
+                            </MatBody2>
+                        </MatCardContent>
+                    </MatCard>
+                </div>
+                
+                <div class="mat-layout-grid-cell">
+                    <MatCard Class="mat-card">
+                        <MatCardContent>
+                            <MatCardMedia Wide="true" ImageUrl="https://image.shutterstock.com/z/stock-photo-welcome-to-utah-road-sign-1154689240.jpg"></MatCardMedia>
+                            <div class="mat-card-content">
+                                <MatH6 Class="mat-card-clean-margin">Where Am I</MatH6>
+                            </div>
+                            <MatBody2 Class="mat-card-content mat-card-clean-margin">
+                                Currently I live in Ogden Utah. I have lived in Utah for most of my Adult life.
+                            </MatBody2>
+                        </MatCardContent>
+                    </MatCard>
+                </div>
+                
+                <div class="mat-layout-grid-cell">
+                    <MatCard Class="mat-card">
+                        <MatCardContent>
+                            <MatCardMedia Wide="true" ImageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/PaascheAirbrush.jpg/1200px-PaascheAirbrush.jpg"></MatCardMedia>
+                            <div class="mat-card-content">
+                                <MatH6 Class="mat-card-clean-margin">My Hobbies</MatH6>
+                            </div>
+                            <MatBody2 Class="mat-card-content mat-card-clean-margin">
+                                I have many hobbies ranging from DMing my friends D&amp;D campaign to painting miniatures for my favorite board game "Battletech".
+                            </MatBody2>
+                        </MatCardContent>
+                    </MatCard>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
