@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlserver://localhost:5508</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="subcodetech-db-server.database.windows.net" uuid="1dc11dc8-f7da-4856-815b-8c72296bc371">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://subcodetech-db-server.database.windows.net;Initial Catalog=sct-store-database;Persist Security Info=False;User ID=sctadmin;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;database=KaydenMiller</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
