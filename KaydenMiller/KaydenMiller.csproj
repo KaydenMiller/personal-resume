@@ -5,6 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.0" />
+      <PackageReference Include="Azure.Identity" Version="1.2.2" />
       <PackageReference Include="Delegate.SassBuilder" Version="1.4.0" />
       <PackageReference Include="MatBlazor" Version="2.8.0" />
     </ItemGroup>
